@@ -81,6 +81,7 @@ addIndex();
 
 
 
+
 function addIndex(){
 
   for(let photo of allPhotosInThumbnail){
@@ -96,17 +97,25 @@ function addIndex(){
 
 }
 
-
-
 function showOnClick(){
   console.log(`Hai cliccato ${this.index}`);
+  //Mi prendo il container sul quale ho cliccato andando a filtrare l'array di container basandomi sull'indice che avevo assegnato come proprietà custom al momento dell'iniezione nel DOM
+  let photoContainerClicked = allHiddenImgContainer.filter( photo => photo.index === this.index);
+  console.log(photoContainerClicked)
 
-  let photoClicked = allHiddenImgContainer.filter()
+  //Se il container che ho cliccato non contiene la classe d-none, vuol dire che è quello che in quel momento è attivo, quindi non faccio nulla.
+  if(!photoContainerClicked[0].classList.contains("d-none")){
+    console.log("Ho cliccato sulla foto già selezionata")
+  }else {
+    //Altrimenti mi vado a prendere la foto attualmente mostrata filtrando di nuovo l'array per gli elemennti che non contengono la classe d-none
+    let photoCurrentlyShown = allHiddenImgContainer.filter( photo => !photo.classList.contains("d-none"))
+    // Aggiungo la classe D-none a la foto attualmente mostrata
+    photoCurrentlyShown[0].classList.add("d-none")
+    // La tolgo a quella su cui ho cliccato
+    photoContainerClicked[0].classList.remove("d-none")
+  }
+
 }
-
-
-
-
 
 function addImagesToDom(){
 
