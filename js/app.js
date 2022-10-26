@@ -66,6 +66,7 @@ allHiddenImgContainer[counter].classList.remove("d-none")
 // Mi prendo tutte le foto nel thumbnail per poter gestire il click
 //Convertendo la HTML collection in array ho accesso a tutti i metodi che abbiamo fatto oggi
 const allPhotosInThumbnail = Array.from(document.getElementsByClassName("img"));
+allPhotosInThumbnail[counter].classList.add("active")
 console.log(allPhotosInThumbnail)
 
 addIndex();
@@ -98,22 +99,26 @@ function addIndex(){
 }
 
 function showOnClick(){
-  console.log(`Hai cliccato ${this.index}`);
-  //Mi prendo il container sul quale ho cliccato andando a filtrare l'array di container basandomi sull'indice che avevo assegnato come proprietà custom al momento dell'iniezione nel DOM
+  //Mi prendo il container e la foto del thumbnail sul quale ho cliccato andando a filtrare l'array di container basandomi sull'indice che avevo assegnato come proprietà custom al momento dell'iniezione nel DOM
   let photoContainerClicked = allHiddenImgContainer.filter( photo => photo.index === this.index);
-  console.log(photoContainerClicked)
+  let photoThumbnailClicked = allPhotosInThumbnail.filter( photo => photo.index === this.index)
 
   //Se il container che ho cliccato non contiene la classe d-none, vuol dire che è quello che in quel momento è attivo, quindi non faccio nulla.
   if(!photoContainerClicked[0].classList.contains("d-none")){
     console.log("Ho cliccato sulla foto già selezionata")
   }else {
     //Altrimenti mi vado a prendere la foto attualmente mostrata filtrando di nuovo l'array per gli elemennti che non contengono la classe d-none
+    // Qui ho fatto un pò al contrario perché per la thumbnail ho aggiunto invece che rimosso una classe, quindi anche il controllo è al contrario.
     let photoCurrentlyShown = allHiddenImgContainer.filter( photo => !photo.classList.contains("d-none"))
+    let thumbnailCurrentlyShown = allPhotosInThumbnail.filter( photo => photo.classList.contains("active"))
     // Aggiungo la classe D-none a la foto attualmente mostrata
     photoCurrentlyShown[0].classList.add("d-none")
+    thumbnailCurrentlyShown[0].classList.remove("active")
     // La tolgo a quella su cui ho cliccato
     photoContainerClicked[0].classList.remove("d-none")
+    photoThumbnailClicked[0].classList.add("active")
   }
+
 
 }
 

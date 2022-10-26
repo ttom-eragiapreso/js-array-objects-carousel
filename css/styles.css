@@ -59,6 +59,10 @@ img {
   border: 2px solid white;
 }
 
+.thumbnails img.active {
+  opacity: 1;
+}
+
 .country-name, .country-description {
   position: absolute;
   top: 0;
