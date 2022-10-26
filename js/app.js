@@ -33,7 +33,7 @@ const allImages = [{
 },{
   countryName: "Argentina",
   image: "https://static1.evcdn.net/images/reduction/1583177_w-1920_h-1080_q-70_m-crop.jpg",
-  description: "L'Argentina è bella'"
+  description: "L'Argentina è bella"
 },{
   countryName: "Colombia",
   image: "https://cdn.sanity.io/images/24oxpx4s/prod/ed09eff0362396772ad50ec3bfb728d332eb1c30-3200x2125.jpg?w=1600&h=1063&fit=crop",
@@ -58,7 +58,6 @@ let autplayCounter = 0;
 addImagesToDom();
 // Mi prendo tutti i container che ho creato per metterci le foto per poter poi gestire l'autoplay che aggiunge e rimuove le classi
 const allHiddenImgContainer = Array.from(document.getElementsByClassName("img-container")) 
-console.log(allHiddenImgContainer)
 
 //Mostro la prima foto togliendo la classe al primo elemento della HTML collection. 
 allHiddenImgContainer[counter].classList.remove("d-none")
@@ -67,8 +66,8 @@ allHiddenImgContainer[counter].classList.remove("d-none")
 //Convertendo la HTML collection in array ho accesso a tutti i metodi che abbiamo fatto oggi
 const allPhotosInThumbnail = Array.from(document.getElementsByClassName("img"));
 allPhotosInThumbnail[counter].classList.add("active")
-console.log(allPhotosInThumbnail)
 
+// Uso questa funzione semplicemente per aggiungere la proprietà custom index alle foto dello slider e alle thumbnail, così da poterlo usare dopo per comparazione 
 addIndex();
 
 
