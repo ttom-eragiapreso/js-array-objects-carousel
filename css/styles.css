@@ -51,6 +51,7 @@ img {
   opacity: .55;
   transition: all .5s ease;
   border: none;
+  cursor: pointer;
 }
 
 .thumbnails img:hover {

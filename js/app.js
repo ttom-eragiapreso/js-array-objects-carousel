@@ -50,26 +50,59 @@ const mainWrapper = document.querySelector(".main-wrapper");
 const carousel = document.querySelector(".carousel");
 const slider = document.querySelector(".slider");
 const thumbnails = document.querySelector(".thumbnails");
-//const imgContainer = document.querySelector(".img-container");
+let counter = 0;
+let autplayCounter = 0;
 
 
-
-
+// Aggiungo tutte le foto al DOM, sia nello slilder principale che nel thumbnails
 addImagesToDom();
+// Mi prendo tutti i container che ho creato per metterci le foto per poter poi gestire l'autoplay che aggiunge e rimuove le classi
+const allHiddenImgContainer = Array.from(document.getElementsByClassName("img-container")) 
+console.log(allHiddenImgContainer)
 
-const allHiddenEl = document.getElementsByClassName("img-container")
+//Mostro la prima foto togliendo la classe al primo elemento della HTML collection. 
+allHiddenImgContainer[counter].classList.remove("d-none")
 
-allHiddenEl[0].classList.remove("d-none")
+// Mi prendo tutte le foto nel thumbnail per poter gestire il click
+//Convertendo la HTML collection in array ho accesso a tutti i metodi che abbiamo fatto oggi
+const allPhotosInThumbnail = Array.from(document.getElementsByClassName("img"));
+console.log(allPhotosInThumbnail)
 
-
-
-
-
-
-
-
+addIndex();
 
 
+
+
+
+
+
+
+
+
+
+
+function addIndex(){
+
+  for(let photo of allPhotosInThumbnail){
+    photo.index = counter++
+    photo.addEventListener("click", showOnClick)
+  }
+
+  counter = 0;
+
+  for(let container of allHiddenImgContainer){
+    container.index = counter++
+  }
+
+}
+
+
+
+function showOnClick(){
+  console.log(`Hai cliccato ${this.index}`);
+
+  let photoClicked = allHiddenImgContainer.filter()
+}
 
 
 
@@ -87,7 +120,7 @@ function addImagesToDom(){
     <span class="country-name">${country.countryName}</span>
     <span class="country-description">${country.description}</span>`;
 
-    thumbnails.innerHTML += `<img src=${country.image} alt="">`;
+    thumbnails.innerHTML += `<img src=${country.image} alt="" class="img">`;
 
     slider.append(imgContainer)
   })
